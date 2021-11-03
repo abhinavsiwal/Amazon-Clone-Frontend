@@ -1,8 +1,9 @@
 import React from "react";
-
+import Metadata from "../layout/Metadata";
 const Home = () => {
   return (
-    <div classNameName="container container-fluid">
+    <React.Fragment>
+      <Metadata title={"Buy Best Products Online"} />
       <h1 id="products_heading">Latest Products</h1>
       <section id="products" className="container mt-5">
         <div className="row">
@@ -15,7 +16,9 @@ const Home = () => {
               />
               <div className="card-body d-flex flex-column">
                 <h5 className="card-title">
-                  <a href="/">128GB Solid Storage Memory card - SanDisk Ultra</a>
+                  <a href="/">
+                    128GB Solid Storage Memory card - SanDisk Ultra
+                  </a>
                 </h5>
                 <div className="ratings mt-auto">
                   <div className="rating-outer">
@@ -32,7 +35,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </div>
+    </React.Fragment>
   );
 };
 
