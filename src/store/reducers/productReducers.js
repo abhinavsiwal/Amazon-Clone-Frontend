@@ -13,7 +13,6 @@ export const productReducers =
           loading: true,
           products: [],
         };
-        break;
       case ALL_PRODUCTS_SUCCESS:
         return {
           loading: false,
@@ -25,13 +24,12 @@ export const productReducers =
           loading: false,
           error: action.payload,
         };
-
       case CLEAR_ERRORS:
         return {
           ...state,
           error: null,
         };
       default:
-        break;
+        return state; 
     }
   };

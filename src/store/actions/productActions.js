@@ -19,7 +19,7 @@ import {
       } catch (err) {
           dispatch({
               type:ALL_PRODUCTS_FAIL,
-              payload:error.response.data.message,
+              payload:err.response.data.message,
           })
       }
   }
