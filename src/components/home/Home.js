@@ -13,11 +13,12 @@ const Home = () => {
     (state) => state.products
   );
   useEffect(() => {
-    dispatch(getProducts);
     if(error){
       return alert.error(error);
     }
-  }, [dispatch,error]);
+    dispatch(getProducts);
+   
+  }, [dispatch,error,alert]);
 
   return (
     <React.Fragment>
