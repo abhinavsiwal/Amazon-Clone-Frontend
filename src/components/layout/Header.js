@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 // import { Route } from "react-router-dom";
 // import logo from '../../assets/amazon-dark.svg';
 import Search from "./Search";
@@ -8,7 +9,9 @@ const Header = () => {
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
+            <Link to="/">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="logo ml-4"  className="logo"/>
+            </Link>
           </div>
         </div>
 
