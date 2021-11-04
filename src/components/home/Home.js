@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Pagination from "react-js-pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
@@ -8,8 +9,11 @@ import Metadata from "../layout/Metadata";
 import Loader from "../layout/Loader";
 
 const Home = () => {
+  const params=useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
+  // console.log(params.keyword);
+  const {keyword}=params;
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, products, error, productsCount, resPerPage } = useSelector(
     (state) => state.products
@@ -19,8 +23,8 @@ const Home = () => {
     if (error) {
       return alert.error(error);
     }
-    dispatch(getProducts(currentPage));
-  }, [dispatch, error, alert, currentPage]);
+    dispatch(getProducts(keyword,currentPage));
+  }, [dispatch, error, alert, currentPage,keyword]);
   const setCurrentPageNo = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
