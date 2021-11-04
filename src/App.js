@@ -4,6 +4,7 @@ import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import "./App.css";
 import Home from "./components/home/Home";
+import ProductDetail from "./components/products/ProductDetail";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Home />
+          </Route>
+          <Route path="/product/:id" exact>
+            <ProductDetail />
           </Route>
         </Switch>
       </div>
