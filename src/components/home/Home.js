@@ -4,6 +4,7 @@ import { getProducts } from "../../store/actions/productActions";
 import Product from "../products/Product";
 
 import Metadata from "../layout/Metadata";
+import Loader from "../layout/Loader";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const Home = () => {
       <Metadata title={"Buy Best Products Online"} />
       <h1 id="products_heading">Latest Products</h1>
       {loading ? (
-        <h1>Loading</h1>
+        <Loader />
         ) : (
         <section id="products" className="container mt-5">
           <div className="row">
