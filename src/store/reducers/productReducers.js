@@ -20,6 +20,7 @@ export const productReducers = (state = { products: [] }, action) => {
         loading: false,
         products: action.payload.products,
         productsCount: action.payload.productsCount,
+        resPerPage:action.payload.resPerPage
       };
     case ALL_PRODUCTS_FAIL:
       return {
@@ -45,19 +46,19 @@ export const productDetailReducer = (state = { product: {} }, action) => {
       };
     case PRODUCT_DETAIL_SUCCESS:
       return {
-        loading: false,
-        product: action.payload,
+        loading:false,
+        product:action.payload,
       };
     case PRODUCT_DETAIL_FAIL:
       return {
         ...state,
-        error: action.payload,
+        error:action.payload,
       };
-    case CLEAR_ERRORS:
-      return {
-        ...state,
-        error: null,
-      };
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
     default:
       return state;
   }
