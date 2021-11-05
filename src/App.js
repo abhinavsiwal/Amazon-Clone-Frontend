@@ -1,5 +1,6 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { Route, Switch } from "react-router-dom";
+import { useDispatch,} from "react-redux";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import "./App.css";
@@ -8,7 +9,14 @@ import ProductDetail from "./components/products/ProductDetail";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 
+import {loadUser} from './store/actions/userActions'
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(loadUser())
+  })
   return (
     <div className="App">
       <Header />
