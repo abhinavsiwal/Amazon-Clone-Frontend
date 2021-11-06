@@ -14,97 +14,91 @@ import {
   CLEAR_ERRORS,
 } from "../../constants/userConstants";
 
-
 //Login
-export const login =(email,password)=>async(dispatch)=>{
-    try {
-        dispatch({type:LOGIN_REQUEST})
-        
-        const config={
-            headers:{
-                'Content-Type':'application/json'
-            }
-        }
-        const {data}=await axios.post('/api/login',{email,password},config)
-        dispatch({
-            type:LOGIN_SUCCESS,
-            payload:data.user,
-        })
+export const login = (email, password) => async (dispatch) => {
+  try {
+    dispatch({ type: LOGIN_REQUEST });
 
-    } catch (err) {
-        dispatch({
-            type:LOGIN_FAILED,
-            payload:err.response.data.message,
-        })
-    }
-}
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/api/login",
+      { email, password },
+      config
+    );
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: data.user,
+    });
+  } catch (err) {
+    dispatch({
+      type: LOGIN_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
 
 //Register User
-export const register =(userData)=>async(dispatch)=>{
-  
-    try {
-        dispatch({type:REGISTER_USER_REQUEST})
-        
-        const config={
-            headers:{
-                'Content-Type':'multipart/form-data'
-            }
-        }
-        const {data}=await axios.post('/api/register',userData,config)
-        dispatch({
-            type:REGISTER_USER_SUCCESS,
-            payload:data.user,
-        })
+export const register = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: REGISTER_USER_REQUEST });
 
-    } catch (err) {
-        dispatch({
-            type:REGISTER_USER_FAILED,
-            payload:err.response.data.message,
-        })
-    }
-}
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    const { data } = await axios.post("/api/register", userData, config);
+    dispatch({
+      type: REGISTER_USER_SUCCESS,
+      payload: data.user,
+    });
+  } catch (err) {
+    dispatch({
+      type: REGISTER_USER_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
 
 //Load User
-export const loadUser =()=>async(dispatch)=>{
-  
-    try {
-        dispatch({type:LOAD_USER_REQUEST})
-        
-        const {data}=await axios.get('/api/profile')
-        dispatch({
-            type:LOAD_USER_SUCCESS,
-            payload:data.user,
-        })
+export const loadUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_USER_REQUEST });
 
-    } catch (err) {
-        dispatch({
-            type:LOAD_USER_FAILED,
-            payload:err.response.data.message,
-        })
-    }
-}
+    const { data } = await axios.get("/api/profile");
+    dispatch({
+      type: LOAD_USER_SUCCESS,
+      payload: data.user,
+    });
+  } catch (err) {
+    dispatch({
+      type: LOAD_USER_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
 
 //Logout User
-export const logout =()=>async(dispatch)=>{
-  
-    try {
-    
-        
-        await axios.get('/api/logout')
-        dispatch({
-            type:LOGOUT_SUCCESS,
-        })
-
-    } catch (err) {
-        dispatch({
-            type:LOGOUT_FAILED,
-            payload:err.response.data.message,
-        })
-    }
-}
-
-export const clearErrors = async (dispatch) => {
+export const logout = () => async (dispatch) => {
+  try {
+    await axios.get("/api/logout");
     dispatch({
-      type: CLEAR_ERRORS,
+      type: LOGOUT_SUCCESS,
     });
-  };
+  } catch (err) {
+    dispatch({
+      type: LOGOUT_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({
+    type: CLEAR_ERRORS,
+  });
+};

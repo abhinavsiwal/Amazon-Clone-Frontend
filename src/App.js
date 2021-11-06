@@ -8,7 +8,7 @@ import Home from "./components/home/Home";
 import ProductDetail from "./components/products/ProductDetail";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-
+import Profile from "./components/user/Profile";
 import {loadUser} from './store/actions/userActions'
 
 function App() {
@@ -36,6 +36,9 @@ function App() {
           </Route>
           <Route path="/register" exact>
             <Register />
+          </Route>
+          <Route path="/profile" exact>
+            <Profile />
           </Route>
         </Switch>
       </div>
