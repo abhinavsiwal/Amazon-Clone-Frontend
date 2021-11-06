@@ -10,6 +10,7 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
 import {loadUser} from './store/actions/userActions'
+import ProtectedRoute from "./components/routes/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,9 +38,7 @@ function App() {
           <Route path="/register" exact>
             <Register />
           </Route>
-          <Route path="/profile" exact>
-            <Profile />
-          </Route>
+          <ProtectedRoute path="/profile" component={Profile} exact />
         </Switch>
       </div>
       <Footer />

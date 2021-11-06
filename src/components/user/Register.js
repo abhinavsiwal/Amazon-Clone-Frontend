@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import FormData from "form-data";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 
-import Loader from "../layout/Loader";
+// import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
 
 

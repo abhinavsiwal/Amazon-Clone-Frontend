@@ -8,7 +8,6 @@ import Loader from "../layout/Loader";
 
 const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
-  console.log(loading);
   return (
     <React.Fragment>
       {!loading ? (
