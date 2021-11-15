@@ -10,7 +10,7 @@ const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
   return (
     <React.Fragment>
-      {!loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <Fragment>

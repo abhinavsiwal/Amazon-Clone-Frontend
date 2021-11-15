@@ -11,6 +11,7 @@ import Register from "./components/user/Register";
 import Profile from "./components/user/Profile";
 import {loadUser} from './store/actions/userActions'
 import ProtectedRoute from "./components/routes/ProtectedRoute";
+import UpdateProfile from "./components/user/UpdateProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
             <Register />
           </Route>
           <ProtectedRoute path="/profile" component={Profile} exact />
+          <ProtectedRoute path="/profile/update" component={UpdateProfile} exact />
         </Switch>
       </div>
       <Footer />
