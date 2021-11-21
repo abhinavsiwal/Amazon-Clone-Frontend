@@ -12,6 +12,7 @@ import Profile from "./components/user/Profile";
 import {loadUser} from './store/actions/userActions'
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import UpdateProfile from "./components/user/UpdateProfile";
+import UpdatePassword from "./components/user/UpdatePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ function App() {
           </Route>
           <ProtectedRoute path="/profile" component={Profile} exact />
           <ProtectedRoute path="/profile/update" component={UpdateProfile} exact />
+          <ProtectedRoute path="/password/change" component={UpdatePassword} exact />
         </Switch>
       </div>
       <Footer />
