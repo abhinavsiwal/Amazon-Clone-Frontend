@@ -13,6 +13,8 @@ import {loadUser} from './store/actions/userActions'
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import UpdateProfile from "./components/user/UpdateProfile";
 import UpdatePassword from "./components/user/UpdatePassword";
+import ForgotPassword from "./components/user/ForgotPassword";
+import NewPassword from "./components/user/NewPassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,12 @@ function App() {
           <ProtectedRoute path="/profile" component={Profile} exact />
           <ProtectedRoute path="/profile/update" component={UpdateProfile} exact />
           <ProtectedRoute path="/password/change" component={UpdatePassword} exact />
+          <Route path="/password/forgot" exact>
+            <ForgotPassword />
+          </Route>
+          <Route path="/password/reset/:token" exact>
+            <NewPassword />
+          </Route>
         </Switch>
       </div>
       <Footer />
