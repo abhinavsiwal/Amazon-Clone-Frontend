@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,6 +14,7 @@ import Metadata from "../layout/Metadata";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const [qty, setQty] = useState(1);
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
   );
@@ -29,6 +30,20 @@ const ProductDetail = () => {
       dispatch(clearErrors());
     }
   }, [alert, dispatch, error, id]);
+
+const increaseQty=()=>{
+  if(qty>=product.stock){
+    return;
+  }
+  setQty(qty+1);
+}
+const decreaseQty=()=>{
+  if(qty<=1){
+    return;
+  }
+  setQty(qty-1);
+}
+
   return (
     <React.Fragment>
         <Metadata title={product.name} />
@@ -64,16 +79,16 @@ const ProductDetail = () => {
 
               <p id="product_price">Rs.{product.price}</p>
               <div className="stockCounter d-inline">
-                <span className="btn btn-danger minus">-</span>
+                <span className="btn btn-danger minus" onClick={decreaseQty}>-</span>
 
                 <input
                   type="number"
                   className="form-control count d-inline"
-                  value="1"
+                  value={qty}
                   readOnly
                 />
 
-                <span className="btn btn-primary plus">+</span>
+                <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
               </div>
               <button
                 type="button"
