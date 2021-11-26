@@ -5,9 +5,9 @@ import {
   getProductDetails,
   clearErrors,
 } from "../../store/actions/productActions";
-import { useAlert } from "react-alert";
 import { Carousel } from "react-bootstrap";
 
+import { useAlert } from "react-alert";
 import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
 import {addItemToCart} from '../../store/actions/cartAction'

@@ -15,6 +15,7 @@ import UpdateProfile from "./components/user/UpdateProfile";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
+import Cart from "./components/cart/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path="/password/reset/:token" exact>
             <NewPassword />
+          </Route>
+          <Route path="/cart" exact>
+            <Cart />
           </Route>
         </Switch>
       </div>
