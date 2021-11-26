@@ -1,14 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useAlert } from "react-alert";
+// import { useAlert } from "react-alert";
 // import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
-import { addItemToCart } from "../../store/actions/cartAction";
+import { addItemToCart,removeItemFromCart } from "../../store/actions/cartAction";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  const increaseQty = (id, qty, stock) => {
+    const newQty = qty + 1;
+    if (newQty > stock) {
+      return;
+    }
+    dispatch(addItemToCart(id, newQty));
+  };
+  const decreaseQty = (id, qty) => {
+    const newQty = qty - 1;
+    if (newQty <= 0) {
+      return;
+    }
+    dispatch(addItemToCart(id, newQty));
+  };
+
+  const removeCartHandler=id=>{
+      dispatch(removeItemFromCart(id));
+  }
+
   return (
     <React.Fragment>
       <Metadata title={"Your Cart"} />
@@ -23,9 +42,9 @@ const Cart = () => {
           <div className="row d-flex justify-content-between">
             <div className="col-12 col-lg-8">
               {cartItems.map((item) => (
-                <React.Fragment>
+                <React.Fragment key={item._id}>
                   <hr />
-                  <div className="cart-item">
+                  <div className="cart-item" key={item.product}>
                     <div className="row">
                       <div className="col-4 col-lg-3">
                         <img
@@ -48,15 +67,25 @@ const Cart = () => {
 
                       <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                         <div className="stockCounter d-inline">
-                          <span className="btn btn-danger minus">-</span>
+                          <span
+                            className="btn btn-danger minus"
+                            onClick={()=>decreaseQty(item.product,item.quantity)}
+                          >
+                            -
+                          </span>
                           <input
                             type="number"
                             className="form-control count d-inline"
-                            value="1"
+                            value={item.quantity}
                             readOnly
                           />
 
-                          <span className="btn btn-primary plus">+</span>
+                          <span
+                            className="btn btn-primary plus"
+                            onClick={()=>increaseQty(item.product,item.quantity,item.stock)}
+                          >
+                            +
+                          </span>
                         </div>
                       </div>
 
@@ -64,6 +93,7 @@ const Cart = () => {
                         <i
                           id="delete_cart_item"
                           className="fa fa-trash btn btn-danger"
+                          onClick={()=>removeCartHandler(item.product)}
                         ></i>
                       </div>
                     </div>
