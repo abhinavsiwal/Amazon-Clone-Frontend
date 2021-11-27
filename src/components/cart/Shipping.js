@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { countries } from "countries-list";
-// import { useAlert } from "react-alert";
-// import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
 import CheckoutSteps from "./CheckoutSteps";
 import { saveShippingInfo } from "../../store/actions/cartAction";
@@ -22,7 +20,7 @@ const Shipping = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }));
-    history.push('/confirm')
+    history.push('/order/confirm')
   };
 
   return (
