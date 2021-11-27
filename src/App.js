@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import { Route, Switch } from "react-router-dom";
 import { useDispatch,} from "react-redux";
 import Header from "./components/layout/Header";
@@ -18,12 +18,22 @@ import NewPassword from "./components/user/NewPassword";
 import Cart from "./components/cart/Cart";
 import Shipping from "./components/cart/Shipping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
+import axios from "axios";
+import { loadStripe } from "@stripe/stripe-js";
+import Payment from "./components/cart/Payment";
+import {Elements} from '@stripe/react-stripe-js';
+
 
 function App() {
   const dispatch = useDispatch();
-
+  const [stripeApiKey, setstripeApiKey] = useState('');
   useEffect(()=>{
     dispatch(loadUser())
+    async function getStripeApiKey(){
+      const {data} = await axios.get('/api/stripeapi');
+      setstripeApiKey(data.stripeApiKey);
+    }
+    getStripeApiKey();
   })
   return (
     <div className="App">
@@ -59,6 +69,11 @@ function App() {
           </Route>
           <ProtectedRoute path="/shipping" component={Shipping} exact />
           <ProtectedRoute path="/order/confirm" component={ConfirmOrder} exact />
+          {stripeApiKey && 
+            <Elements stripe={loadStripe(stripeApiKey)}>
+              <ProtectedRoute path="/payment" component={Payment} exact />
+            </Elements>
+          }
         </Switch>
       </div>
       <Footer />
