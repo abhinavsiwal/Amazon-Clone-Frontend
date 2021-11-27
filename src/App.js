@@ -16,6 +16,7 @@ import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
 import Cart from "./components/cart/Cart";
+import Shipping from "./components/cart/Shipping";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ function App() {
           <Route path="/cart" exact>
             <Cart />
           </Route>
+          <ProtectedRoute path="/shipping" component={Shipping} exact />
         </Switch>
       </div>
       <Footer />
