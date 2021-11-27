@@ -5,6 +5,7 @@ import { countries } from "countries-list";
 // import { useAlert } from "react-alert";
 // import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
+import CheckoutSteps from "./CheckoutSteps";
 import { saveShippingInfo } from "../../store/actions/cartAction";
 
 const Shipping = () => {
@@ -27,6 +28,7 @@ const Shipping = () => {
   return (
     <React.Fragment>
       <Metadata title={"Shipping Info"} />
+      <CheckoutSteps shipping />
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
           <form className="shadow-lg" onSubmit={submitHandler}>
