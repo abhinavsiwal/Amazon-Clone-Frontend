@@ -14,7 +14,7 @@ const ConfirmOrder = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-  const shippingPrice = itemsPrice > 500 ? 0 : 50;
+  const shippingPrice = itemsPrice < 500 ? 0 : 50;
   const taxPrice = Number((0.05*itemsPrice).toFixed(2));
   const totalPrice = Math.round(itemsPrice+shippingPrice+taxPrice);
   const processToPayment=()=>{
