@@ -10,7 +10,7 @@ const Header = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const { user, loading } = useSelector((state) => state.auth);
-  const {cartItems} = useSelector((state)=>state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
   const logoutHandler = () => {
     dispatch(logout());
     alert.success("Logged out successfully");
@@ -40,7 +40,7 @@ const Header = () => {
               Cart
             </span>
             <span className="ml-1 m" id="cart_count">
-             {cartItems.length}
+              {cartItems.length}
             </span>
           </Link>
           {user ? (
@@ -67,15 +67,14 @@ const Header = () => {
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
-                {user && user.role !== "admin" ? (
-                  <Link className="dropdown-item" to="/orders/me">
-                    Orders
-                  </Link>
-                ) : (
+                {user && user.role !== "admin" && (
                   <Link className="dropdown-item" to="/dashboard">
                     Dashboard
                   </Link>
                 )}
+                <Link className="dropdown-item" to="/orders/me">
+                  Orders
+                </Link>
                 <Link className="dropdown-item" to="/profile">
                   Profile
                 </Link>

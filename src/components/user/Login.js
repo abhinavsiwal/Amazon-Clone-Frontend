@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory,useLocation } from "react-router-dom";
 
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +13,8 @@ const Login = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
+
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,15 +22,17 @@ const Login = () => {
     (state) => state.auth
   );
 
+const redirect = location.search ? location.search.split('=')[1]:"/"
+
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/");
+      history.push(redirect);
     }
     if (error) {
        alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, isAuthenticated, error, history]);
+  }, [dispatch, alert, isAuthenticated, error, history,redirect]);
 
   const submitHandler=(e)=>{
     e.preventDefault();
