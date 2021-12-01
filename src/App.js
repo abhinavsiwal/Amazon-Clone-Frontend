@@ -24,6 +24,7 @@ import Payment from "./components/cart/Payment";
 import { Elements } from "@stripe/react-stripe-js";
 import OrderSuccess from "./components/cart/OrderSuccess";
 import ListOrder from "./components/order/ListOrder";
+import OrderDetails from "./components/order/OrderDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -77,6 +78,7 @@ function App() {
             <Cart />
           </Route>
          
+          <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
           <ProtectedRoute path="/orders/me" component={ListOrder} exact />
           <ProtectedRoute path="/shipping" component={Shipping} exact />
           <ProtectedRoute

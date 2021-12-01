@@ -10,7 +10,7 @@ import { myOrders, clearErrors } from "../../store/actions/orderActions";
 const ListOrder = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
-console.log("here");
+
   const { loading, error, orders } = useSelector((state) => state.myOrders);
 
   useEffect(() => {
