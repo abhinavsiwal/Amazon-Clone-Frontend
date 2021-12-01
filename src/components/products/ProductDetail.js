@@ -13,6 +13,7 @@ import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
 import { addItemToCart } from "../../store/actions/cartAction";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
+import ListReviews from "./ListReviews";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -23,7 +24,9 @@ const ProductDetail = () => {
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
   );
-  const {error:reviewError,success} = useSelector(state=>state.newReview)
+  const { error: reviewError, success } = useSelector(
+    (state) => state.newReview
+  );
   const { user } = useSelector((state) => state.auth);
   const params = useParams();
   const { id } = params;
@@ -39,11 +42,11 @@ const ProductDetail = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    if(success){
-      alert.success('Review Posted Successfully')
-      dispatch({type:NEW_REVIEW_RESET})
+    if (success) {
+      alert.success("Review Posted Successfully");
+      dispatch({ type: NEW_REVIEW_RESET });
     }
-  }, [alert, dispatch, error, id,reviewError,success]);
+  }, [alert, dispatch, error, id, reviewError, success]);
 
   const increaseQty = () => {
     if (qty >= product.stock) {
@@ -75,7 +78,7 @@ const ProductDetail = () => {
         if (e.type === "click") {
           if (index < this.starValue) {
             star.classList.add("orange");
-            setRating(this.starValue)
+            setRating(this.starValue);
           } else {
             star.classList.remove("orange");
           }
@@ -94,14 +97,14 @@ const ProductDetail = () => {
     }
   };
 
-  const reviewHandler=(e)=>{
+  const reviewHandler = (e) => {
     const formData = new FormData();
-    formData.set('rating',rating);
-    formData.set('comment',comment);
-    formData.set('productId',params.id);
+    formData.set("rating", rating);
+    formData.set("comment", comment);
+    formData.set("productId", params.id);
 
     dispatch(newReview(formData));
-  }
+  };
 
   return (
     <React.Fragment>
@@ -201,7 +204,7 @@ const ProductDetail = () => {
                   Submit Your Review
                 </button>
               ) : (
-                <div class="alert alrt-danger mt-5" type="alert">
+                <div className="alert alrt-danger mt-5" type="alert">
                   Login to post your review.
                 </div>
               )}
@@ -255,7 +258,7 @@ const ProductDetail = () => {
                             id="review"
                             className="form-control mt-3"
                             value={comment}
-                            onChange={e=>setComment(e.target.value)}
+                            onChange={(e) => setComment(e.target.value)}
                           ></textarea>
 
                           <button
@@ -274,6 +277,9 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
+          {product.reviews && product.reviews.length > 0 && (
+            <ListReviews reviews={product.reviews} />
+          )}
         </React.Fragment>
       )}
     </React.Fragment>
