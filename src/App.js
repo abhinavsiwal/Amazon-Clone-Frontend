@@ -26,6 +26,7 @@ import OrderSuccess from "./components/cart/OrderSuccess";
 import ListOrder from "./components/order/ListOrder";
 import OrderDetails from "./components/order/OrderDetails";
 import Dashboard from "./components/admin/Dashboard";
+import ProductList from "./components/admin/ProductList";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-        <Switch>
+   
       <div className="container container_fluid">
           <Route path="/" exact>
             <Home />
@@ -93,11 +94,11 @@ function App() {
               <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
           )}
-          {/* Admin Routes */}
       
       </div>
-        </Switch>
+          {/* Admin Routes */}
           <ProtectedRoute path="/dashboard" component={Dashboard} exact  />
+          <ProtectedRoute path="/admin/products" component={ProductList} />
       <Footer />
     </div>
   );

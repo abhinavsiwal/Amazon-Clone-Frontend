@@ -16,23 +16,24 @@ import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 import ListReviews from "./ListReviews";
 
 const ProductDetail = () => {
+  const params = useParams();
   const dispatch = useDispatch();
   const alert = useAlert();
+  const { id } = params;
+
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const { loading, error, product } = useSelector(
     (state) => state.productDetails
   );
-  const { error: reviewError, success } = useSelector(
+  const { error:reviewError, success } = useSelector(
     (state) => state.newReview
   );
   const { user } = useSelector((state) => state.auth);
-  const params = useParams();
-  const { id } = params;
+  
 
-  //   console.log(product);
-  useEffect(() => {
+    useEffect(() => {
     dispatch(getProductDetails(id));
     if (error) {
       alert.error(error);

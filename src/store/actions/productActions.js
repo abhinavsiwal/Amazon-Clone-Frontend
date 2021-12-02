@@ -45,6 +45,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     dispatch({ type: PRODUCT_DETAIL_REQUEST });
 
     const { data } = await axios.get(`/api/product/${id}`);
+    console.log(data);
     dispatch({
       type: PRODUCT_DETAIL_SUCCESS,
       payload: data,
@@ -79,22 +80,15 @@ export const newReview = (reviewData) => async (dispatch) => {
     });
   }
 };
-
-//Clear Errors
-export const clearErrors = async (dispatch) => {
-  dispatch({
-    type: CLEAR_ERRORS,
-  });
-};
 // Get Products admin
 export const getAdminProducts = () => async (dispatch) => {
   try {
     dispatch({ type: ADMIN_PRODUCTS_REQUEST });
 
-    const { data } = await axios.get(`/api/admin/products`);
+    const { data } = await axios.get("/api/admin/products");
     dispatch({
       type: ADMIN_PRODUCTS_SUCCESS,
-      payload: data,
+      payload: data.products,
     });
   } catch (err) {
     dispatch({
@@ -102,4 +96,10 @@ export const getAdminProducts = () => async (dispatch) => {
       payload: err.message,
     });
   }
+};
+//Clear Errors
+export const clearErrors = async (dispatch) => {
+  dispatch({
+    type: CLEAR_ERRORS,
+  });
 };
