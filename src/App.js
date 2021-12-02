@@ -25,6 +25,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import OrderSuccess from "./components/cart/OrderSuccess";
 import ListOrder from "./components/order/ListOrder";
 import OrderDetails from "./components/order/OrderDetails";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,8 +41,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div className="container container_fluid">
         <Switch>
+      <div className="container container_fluid">
           <Route path="/" exact>
             <Home />
           </Route>
@@ -86,15 +87,17 @@ function App() {
             component={ConfirmOrder}
             exact
           />
+              <ProtectedRoute path="/success" component={OrderSuccess} exact />
           {stripeApiKey && (
             <Elements stripe={loadStripe(stripeApiKey)}>
-              <ProtectedRoute path="/payment" component={Payment} exact />
+              <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
           )}
-          <ProtectedRoute path="/success" component={OrderSuccess} exact />
+          {/* Admin Routes */}
       
-        </Switch>
       </div>
+        </Switch>
+          <ProtectedRoute path="/dashboard" component={Dashboard} exact  />
       <Footer />
     </div>
   );

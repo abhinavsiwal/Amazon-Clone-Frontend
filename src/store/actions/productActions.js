@@ -4,6 +4,9 @@ import {
   ALL_PRODUCTS_REQUEST,
   ALL_PRODUCTS_SUCCESS,
   ALL_PRODUCTS_FAIL,
+  ADMIN_PRODUCTS_REQUEST,
+  ADMIN_PRODUCTS_SUCCESS,
+  ADMIN_PRODUCTS_FAILED,
   PRODUCT_DETAIL_REQUEST,
   PRODUCT_DETAIL_SUCCESS,
   PRODUCT_DETAIL_FAIL,
@@ -82,4 +85,21 @@ export const clearErrors = async (dispatch) => {
   dispatch({
     type: CLEAR_ERRORS,
   });
+};
+// Get Products admin
+export const getAdminProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: ADMIN_PRODUCTS_REQUEST });
+
+    const { data } = await axios.get(`/api/admin/products`);
+    dispatch({
+      type: ADMIN_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    dispatch({
+      type: ADMIN_PRODUCTS_FAILED,
+      payload: err.message,
+    });
+  }
 };
