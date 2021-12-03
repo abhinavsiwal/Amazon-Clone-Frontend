@@ -4,7 +4,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   productReducers,
   productDetailReducer,
-  newReviewReducer
+  newReviewReducer,
+  newProductReducer
 } from "./reducers/productReducers";
 import {
   authReducer,
@@ -35,6 +36,7 @@ const reducer = combineReducers({
   myOrders:myOrdersReducer,
   orderDetails:orderDetailsReducer, 
   newReview:newReviewReducer,
+  newProduct:newProductReducer,
 });
 const middleware = [thunk];
 const store = createStore(

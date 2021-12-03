@@ -27,6 +27,7 @@ import ListOrder from "./components/order/ListOrder";
 import OrderDetails from "./components/order/OrderDetails";
 import Dashboard from "./components/admin/Dashboard";
 import ProductList from "./components/admin/ProductList";
+import NewProduct from "./components/admin/NewProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -99,6 +100,7 @@ function App() {
           {/* Admin Routes */}
           <ProtectedRoute path="/dashboard" component={Dashboard} exact  />
           <ProtectedRoute path="/admin/products" component={ProductList} />
+          <ProtectedRoute path="/admin/product/new" component={NewProduct} />
       <Footer />
     </div>
   );
