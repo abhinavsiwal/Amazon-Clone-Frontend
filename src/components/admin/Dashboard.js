@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import {Link} from 'react-router-dom';
-import MetaData from '../layout/Metadata';
-import Loader from '../layout/Loader';
+// import MetaData from '../layout/Metadata';
+// import Loader from '../layout/Loader';
 import Sidebar from './Sidebar';
 import {
     getAdminProducts,

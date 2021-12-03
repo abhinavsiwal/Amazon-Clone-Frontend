@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -28,6 +28,7 @@ import OrderDetails from "./components/order/OrderDetails";
 import Dashboard from "./components/admin/Dashboard";
 import ProductList from "./components/admin/ProductList";
 import NewProduct from "./components/admin/NewProduct";
+import UpdateProduct from "./components/admin/UpdateProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -101,6 +102,7 @@ function App() {
           <ProtectedRoute path="/dashboard" component={Dashboard} exact  />
           <ProtectedRoute path="/admin/products" component={ProductList} />
           <ProtectedRoute path="/admin/product/new" component={NewProduct} />
+          <ProtectedRoute path="/admin/product/:id" component={UpdateProduct} />
       <Footer />
     </div>
   );
