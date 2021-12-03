@@ -8,8 +8,10 @@ import Metadata from "../layout/Metadata";
 import {
   getAdminProducts,
   clearErrors,
+  deleteProduct,
 } from "../../store/actions/productActions";
 import Sidebar from "./Sidebar";
+import { DELETE_PRODUCT_RESET } from "../../constants/productConstants";
 
 const ProductList = () => {
   const history = useHistory();
@@ -17,13 +19,27 @@ const ProductList = () => {
   const dispatch = useDispatch();
   
   const { loading, error, products } = useSelector((state) => state.products);
+  const {error:deleteError,isDeleted} = useSelector(state=>state.product)
   useEffect(() => {
       dispatch(getAdminProducts());
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, error]);
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+    if(isDeleted){
+      alert.success('Product Deleted Successfully')
+      history.push('/admin/products');
+      dispatch({type:DELETE_PRODUCT_RESET})
+    }
+  }, [dispatch, alert, error,deleteError,isDeleted,history]);
+
+  const deleteProductHandler=(id)=>{
+    dispatch(deleteProduct(id));
+  }
 
   const setProducts = () => {
     const data = {
@@ -69,7 +85,7 @@ const ProductList = () => {
             >
               <i className="fa fa-pencil"></i>
             </Link>
-            <button className="btn btn-danger py-1 px-2 ml-2 ">
+            <button className="btn btn-danger py-1 px-2 ml-2 " onClick={()=>deleteProductHandler(product._id)}>
               <i className="fa fa-trash"></i>
             </button>
           </React.Fragment>

@@ -5,7 +5,8 @@ import {
   productReducers,
   productDetailReducer,
   newReviewReducer,
-  newProductReducer
+  newProductReducer,
+  productReducer
 } from "./reducers/productReducers";
 import {
   authReducer,
@@ -37,6 +38,7 @@ const reducer = combineReducers({
   orderDetails:orderDetailsReducer, 
   newReview:newReviewReducer,
   newProduct:newProductReducer,
+  product:productReducer,
 });
 const middleware = [thunk];
 const store = createStore(
