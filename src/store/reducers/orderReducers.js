@@ -13,6 +13,10 @@ import {
   UPDATE_ORDER_SUCCESS,
   UPDATE_ORDER_FAILED,
   UPDATE_ORDER_RESET,
+  DELETE_ORDER_REQUEST,
+  DELETE_ORDER_SUCCESS,
+  DELETE_ORDER_FAILED,
+  DELETE_ORDER_RESET,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
   ORDER_DETAILS_FAILED,
@@ -130,35 +134,35 @@ export const allOrdersReducer = (state = { orders: {} }, action) => {
 
 export const orderReducer = (state = {}, action) => {
   switch (action.type) {
-    // case DELETE_PRODUCT_REQUEST:
+    case DELETE_ORDER_REQUEST:
     case UPDATE_ORDER_REQUEST:
       return {
         ...state,
         loading: true,
       };
-    // case DELETE_PRODUCT_SUCCESS:
-    //   return {
-    //     loading: false,
-    //     isDeleted: action.payload,
-    //   };
+    case DELETE_ORDER_SUCCESS:
+      return {
+        loading: false,
+        isDeleted: action.payload,
+      };
     case UPDATE_ORDER_SUCCESS:
       return {
         ...state,
         loading: false,
         isUpdated: action.payload,
       };
-    // case DELETE_PRODUCT_FAILED:
+    case DELETE_ORDER_FAILED:
     case UPDATE_ORDER_FAILED:
       return {
         ...state,
         error: action.payload,
       };
 
-    // case DELETE_ORDER_RESET:
-    //   return {
-    //     ...state,
-    //     success: false,
-    //   };
+    case DELETE_ORDER_RESET:
+      return {
+        ...state,
+        isDeleted: false,
+      };
 
     case UPDATE_ORDER_RESET:
       return {
