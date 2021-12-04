@@ -29,7 +29,7 @@ import Dashboard from "./components/admin/Dashboard";
 import ProductList from "./components/admin/ProductList";
 import NewProduct from "./components/admin/NewProduct";
 import UpdateProduct from "./components/admin/UpdateProduct";
-
+import OrdersList from "./components/admin/OrdersList";
 function App() {
   const dispatch = useDispatch();
   const [stripeApiKey, setstripeApiKey] = useState("");
@@ -103,6 +103,7 @@ function App() {
           <ProtectedRoute path="/admin/products" component={ProductList} />
           <ProtectedRoute path="/admin/product/new" component={NewProduct} />
           <ProtectedRoute path="/admin/product/:id" component={UpdateProduct} />
+          <ProtectedRoute path="/admin/orders" component={OrdersList} />
       <Footer />
     </div>
   );
