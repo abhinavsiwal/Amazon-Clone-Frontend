@@ -20,10 +20,10 @@ const UpdateProduct = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const {
-    loading,
+    // loading,
     error: updateError,
     isUpdated,
-    success,
+    // success,
   } = useSelector((state) => state.product);
   const { error, product } = useSelector((state) => state.productDetails);
   const [name, setName] = useState("");
