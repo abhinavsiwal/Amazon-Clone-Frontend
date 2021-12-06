@@ -13,6 +13,7 @@ import {
   userReducer,
   forgotPasswordReducer,
   allUsersReducer,
+  userDetailsReducer,
 } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { newOrderReducer,myOrdersReducer,orderDetailsReducer, allOrdersReducer, orderReducer } from "./reducers/orderReducers";
@@ -43,6 +44,7 @@ const reducer = combineReducers({
   allOrders:allOrdersReducer,
   order:orderReducer,
   allUsers:allUsersReducer,
+  userDetails:userDetailsReducer,
 });
 const middleware = [thunk];
 const store = createStore(

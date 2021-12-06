@@ -31,6 +31,9 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILED,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAILED,
   CLEAR_ERRORS,
 } from "../../constants/userConstants";
 
@@ -236,7 +239,7 @@ export const updateUser = (id,userData) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.post(`/api/admin/user/${id}`,userData, config);
+    const { data } = await axios.put(`/api/admin/user/${id}`,userData, config);
     dispatch({
       type: UPDATE_USER_SUCCESS,
       payload: data.success,
@@ -245,6 +248,23 @@ export const updateUser = (id,userData) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: UPDATE_USER_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
+//Get User Details =>Admin
+export const getUserDetails = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_DETAILS_REQUEST });
+    const { data } = await axios.get(`/api/admin/user/${id}`);
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data.user,
+    });
+    console.log(data);
+  } catch (err) {
+    dispatch({
+      type: USER_DETAILS_FAILED,
       payload: err.response.data.message,
     });
   }
