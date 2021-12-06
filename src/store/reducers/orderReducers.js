@@ -126,7 +126,6 @@ export const allOrdersReducer = (state = { orders: {} }, action) => {
         ...state,
         error: null,
       };
-
     default:
       return state;
   }

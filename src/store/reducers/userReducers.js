@@ -24,6 +24,13 @@ import {
   NEW_PASSWORD_REQUEST,
   NEW_PASSWORD_SUCCESS,
   NEW_PASSWORD_FAILED,
+  ALL_USERS_REQUEST,
+  ALL_USERS_SUCCESS,
+  ALL_USERS_FAILED,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILED,
+  UPDATE_USER_RESET,
   CLEAR_ERRORS,
 } from "../../constants/userConstants";
 
@@ -90,18 +97,21 @@ export const userReducer = (state = {}, action) => {
   switch (action.type) {
     case UPDATE_PROFILE_REQUEST:
     case UPDATE_PASSWORD_REQUEST:
+    case UPDATE_USER_REQUEST:
       return {
         ...state,
         loading: true,
       };
     case UPDATE_PROFILE_SUCCESS:
     case UPDATE_PASSWORD_SUCCESS:
+    case UPDATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,
         isUpdated: action.payload,
       };
     case UPDATE_PROFILE_RESET:
+      case UPDATE_USER_RESET:
     case UPDATE_PASSWORD_RESET:
       return {
         ...state,
@@ -109,6 +119,7 @@ export const userReducer = (state = {}, action) => {
       };
     case UPDATE_PROFILE_FAILED:
     case UPDATE_PASSWORD_FAILED:
+    case UPDATE_USER_FAILED:
       return {
         ...state,
         loading: false,
@@ -140,12 +151,42 @@ export const forgotPasswordReducer = (state = {}, action) => {
         message: action.payload,
       };
     case NEW_PASSWORD_SUCCESS:
-      return{
+      return {
         ...state,
-        success:action.payload,
-      }
+        success: action.payload,
+      };
     case FORGOT_PASSWORD_FAILED:
     case NEW_PASSWORD_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const allUsersReducer = (state = { users: [] }, action) => {
+  switch (action.type) {
+    case ALL_USERS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case ALL_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: action.payload,
+      };
+    case ALL_USERS_FAILED:
       return {
         ...state,
         loading: false,

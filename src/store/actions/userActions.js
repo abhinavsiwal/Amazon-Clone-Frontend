@@ -25,6 +25,12 @@ import {
   NEW_PASSWORD_REQUEST,
   NEW_PASSWORD_SUCCESS,
   NEW_PASSWORD_FAILED,
+  ALL_USERS_REQUEST,
+  ALL_USERS_SUCCESS,
+  ALL_USERS_FAILED,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILED,
   CLEAR_ERRORS,
 } from "../../constants/userConstants";
 
@@ -197,6 +203,48 @@ export const resetPassword = (token,passwords) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: NEW_PASSWORD_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
+// All Users =>Admin
+
+//Load User
+export const allUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USERS_REQUEST });
+
+    const { data } = await axios.get("/api/admin/users");
+    console.log(data);
+    dispatch({
+      type: ALL_USERS_SUCCESS,
+      payload: data.users,
+    });
+  } catch (err) {
+    dispatch({
+      type: ALL_USERS_FAILED,
+      payload: err.response.data.message,
+    });
+  }
+};
+//Update User=>Admin
+export const updateUser = (id,userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_USER_REQUEST });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(`/api/admin/user/${id}`,userData, config);
+    dispatch({
+      type: UPDATE_USER_SUCCESS,
+      payload: data.success,
+    });
+    console.log(data);
+  } catch (err) {
+    dispatch({
+      type: UPDATE_USER_FAILED,
       payload: err.response.data.message,
     });
   }

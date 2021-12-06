@@ -12,6 +12,7 @@ import {
   authReducer,
   userReducer,
   forgotPasswordReducer,
+  allUsersReducer,
 } from "./reducers/userReducers";
 import { cartReducer } from "./reducers/cartReducers";
 import { newOrderReducer,myOrdersReducer,orderDetailsReducer, allOrdersReducer, orderReducer } from "./reducers/orderReducers";
@@ -41,6 +42,7 @@ const reducer = combineReducers({
   product:productReducer,
   allOrders:allOrdersReducer,
   order:orderReducer,
+  allUsers:allUsersReducer,
 });
 const middleware = [thunk];
 const store = createStore(
