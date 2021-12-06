@@ -109,7 +109,7 @@ function App() {
           <ProtectedRoute path="/admin/orders" component={OrdersList} exact />
           <ProtectedRoute path="/admin/order/:id" component={ProcessOrder} exact/>
           <ProtectedRoute path="/admin/users" component={UsersList} exact />
-          <ProtectedRoute path="/admin/user/:id" component={UpdateUser} exact />
+          <ProtectedRoute path="/admin/user/:id" component={UpdateUser} exa ct />
       <Footer />
     </div>
   );

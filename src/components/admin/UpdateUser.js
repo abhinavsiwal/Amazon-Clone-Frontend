@@ -44,7 +44,7 @@ const UpdateUser = () => {
         type: UPDATE_USER_RESET,
       });
     }
-  }, [dispatch, alert, error, history, isUpdated, user]);
+  }, [dispatch, alert, error, history, isUpdated, user,userId]);
 
   const submitHandler = (e) => {
     e.preventDefault();

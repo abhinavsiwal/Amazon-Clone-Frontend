@@ -5,9 +5,9 @@ import { MDBDataTable } from "mdbreact";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader";
 import Metadata from "../layout/Metadata";
-import { allUsers, clearErrors } from "../../store/actions/userActions";
+import { allUsers,deleteUser, clearErrors } from "../../store/actions/userActions";
 import Sidebar from "./Sidebar";
-// import { DELETE_ORDER_RESET } from "../../constants/userConstants";
+import { DELETE_USER_RESET } from "../../constants/userConstants";
 const UsersList = () => {
   const history = useHistory();
   const alert = useAlert();
@@ -18,7 +18,7 @@ const UsersList = () => {
     error,
     users = {},
   } = useSelector((state) => state.allUsers);
-  // const {isDeleted} = useSelector(state=>state.user);
+  const {isDeleted} = useSelector(state=>state.user);
 
 
   useEffect(() => {
@@ -28,15 +28,15 @@ const UsersList = () => {
       dispatch(clearErrors());
     }
 
-    // if(isDeleted){
-    //   alert.success('Order Deleted Successfully')
-    //   history.push('/admin/orders');
-    //   dispatch({type:DELETE_ORDER_RESET})
-    // }
-  }, [dispatch, alert, error, history]);
-  // const deleteUserHandler=(id)=>{
-  //   dispatch(deleteUser(id))
-  // }
+    if(isDeleted){
+      alert.success('Order Deleted Successfully')
+      history.push('/admin/orders');
+      dispatch({type:DELETE_USER_RESET})
+    }
+  }, [dispatch, alert, error, history,isDeleted]);
+  const deleteUserHandler=(id)=>{
+    dispatch(deleteUser(id))
+  }
 
   const setUsers = () => {
     const data = {
@@ -84,7 +84,7 @@ const UsersList = () => {
             </Link>
             <button
               className="btn btn-danger py-1 px-2 ml-2 "
-              //    onClick={()=>deleteUserHandler(user._id)}
+                 onClick={()=>deleteUserHandler(user._id)}
             >
               <i className="fa fa-trash"></i>
             </button>

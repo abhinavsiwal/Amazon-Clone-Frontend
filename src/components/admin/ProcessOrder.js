@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, useHistory,useParams } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import Loader from "../layout/Loader";
@@ -13,7 +13,7 @@ import Sidebar from "./Sidebar";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
 
 const ProcessOrder = () => {
-  const history = useHistory();
+
   const alert = useAlert();
   const params = useParams();
   const dispatch = useDispatch();
